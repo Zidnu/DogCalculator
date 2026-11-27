@@ -11,5 +11,7 @@ namespace API.models;
     public string Role { get; set; } = "user";
     public required string Password { get; set; }
 
+    public ICollection<Dog> Dogs { get; set; } = new List<Dog>();
+
     
 }
