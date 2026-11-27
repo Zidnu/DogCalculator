@@ -1,7 +1,11 @@
 
-
+using API.Interfaces;
+using API.Models;
+using API.Services;
+using Microsoft.AspNetCore.Identity;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
+using API.models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,8 @@ builder.Services.AddControllers();
 
 // nämä kolme liitännäistä tarvitaan siihen, että swagger / OpenAPI-dokumentaatio toimii
 // automaattisesti
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
